@@ -1,0 +1,43 @@
+{
+  "name": "Voucher",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Kode voucher unik, mis. HEMAT10"
+    },
+    "description": {
+      "type": "string",
+      "description": "Keterangan singkat voucher"
+    },
+    "discount_percent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Persentase diskon (kosongkan jika pakai discount_amount)"
+    },
+    "discount_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Potongan tetap dalam IDR (bukan persen)"
+    },
+    "per_unit": {
+      "type": "boolean",
+      "default": false,
+      "description": "True: discount_amount dikalikan jumlah unit produk (berlaku kelipatan)"
+    },
+    "valid_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Tanggal voucher berlaku (kosong = selalu aktif)"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Aktif atau tidak"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

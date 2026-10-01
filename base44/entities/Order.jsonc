@@ -1,0 +1,94 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "order_ref": {
+      "type": "string",
+      "description": "Human-friendly order id e.g. TSM-20260915-001"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "customer_phone": {
+      "type": "string"
+    },
+    "delivery_address": {
+      "type": "string"
+    },
+    "items_summary": {
+      "type": "string",
+      "description": "Plain text summary of cart items"
+    },
+    "items_json": {
+      "type": "string",
+      "description": "JSON string of cart items"
+    },
+    "total": {
+      "type": "number"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "cod",
+        "virtual_account",
+        "qris"
+      ]
+    },
+    "bank": {
+      "type": "string",
+      "description": "Bank code for VA: bca, bni, bri, permata, mandiri"
+    },
+    "va_number": {
+      "type": "string"
+    },
+    "qr_url": {
+      "type": "string"
+    },
+    "midtrans_order_id": {
+      "type": "string"
+    },
+    "transaction_status": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid",
+        "processing",
+        "shipped",
+        "completed",
+        "expired",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "voucher_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "first_time",
+        "loyalty"
+      ],
+      "default": "none",
+      "description": "Voucher applied to this order"
+    },
+    "discount_percent": {
+      "type": "number",
+      "default": 0,
+      "description": "Discount percentage applied"
+    },
+    "discount_amount": {
+      "type": "number",
+      "default": 0,
+      "description": "Discount amount in IDR applied"
+    }
+  },
+  "required": [
+    "order_ref",
+    "customer_name",
+    "customer_phone",
+    "total",
+    "payment_method"
+  ]
+}

@@ -1,0 +1,1 @@
+{"name": "weeklySalesReport", "entry": "entry.ts", "automations": [{"type": "scheduled", "name": "weekly_monday_report", "schedule_mode": "recurring", "schedule_type": "cron", "cron_expression": "0 0 * * 1"}]}

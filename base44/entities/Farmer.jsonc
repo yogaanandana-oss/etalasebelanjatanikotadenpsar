@@ -1,0 +1,39 @@
+{
+  "name": "Farmer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "description": "Kecamatan di Kota Denpasar"
+    },
+    "story_id": {
+      "type": "string",
+      "description": "Cerita petani (Bahasa Indonesia)"
+    },
+    "story_en": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "specialties_id": {
+      "type": "string",
+      "description": "Komoditas unggulan, dipisah koma"
+    },
+    "specialties_en": {
+      "type": "string"
+    },
+    "years_farming": {
+      "type": "number",
+      "description": "Lama bertani (tahun)"
+    }
+  },
+  "required": [
+    "name",
+    "location",
+    "story_id"
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "name_id": {
+      "type": "string",
+      "description": "Indonesian name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategori produk (dinamis via entitas Category)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Harga default (grade terbesar) dalam IDR sebelum diskon"
+    },
+    "unit": {
+      "type": "string",
+      "description": "e.g. per kg, per bunch, per fruit"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "harvest_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "restock_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true
+    },
+    "estimated_stock": {
+      "type": "number",
+      "default": 0,
+      "minimum": 0,
+      "description": "Perkiraan jumlah stok tersedia (unit)"
+    },
+    "description": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number",
+      "default": 4.8
+    },
+    "color": {
+      "type": "string",
+      "description": "Warna produk (mis. kulit/daun/daging), teks bebas dwibahasa"
+    },
+    "color_image_url": {
+      "type": "string",
+      "description": "URL gambar pendamping untuk field warna (mis. potongan daging buah)"
+    },
+    "is_sample": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for demo/sample products shown only in admin"
+    },
+    "hidden": {
+      "type": "boolean",
+      "default": false,
+      "description": "True jika produk disembunyikan dari tampilan publik"
+    },
+    "discount_percent": {
+      "type": "number",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage 0-100"
+    },
+    "is_organic": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if organically grown"
+    },
+    "farmer_location": {
+      "type": "string",
+      "enum": [
+        "Denpasar Utara",
+        "Denpasar Timur",
+        "Denpasar Selatan",
+        "Denpasar Barat"
+      ],
+      "description": "Kecamatan of the farmer in Kota Denpasar"
+    },
+    "subak": {
+      "type": "string",
+      "description": "Nama subak (irigasi adat Bali) tempat panen"
+    },
+    "qris_merchant": {
+      "type": "string",
+      "description": "Nama merchant QRIS untuk produk ini; produk dengan subak yang sama memakai merchant yang sama"
+    },
+    "qris_image_url": {
+      "type": "string",
+      "description": "URL gambar QRIS (QR code) milik merchant produk ini"
+    },
+    "weight_priced": {
+      "type": "boolean",
+      "default": false,
+      "description": "True jika harga dihitung per kg \u00d7 berat input pembeli (tier pricing berat)"
+    },
+    "grades": {
+      "type": "array",
+      "description": "Pilihan grade (mis. kecil/sedang/besar) dengan berat & harga sendiri; berat bisa diedit nanti",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Nama grade (Indonesia), mis. Kecil"
+          },
+          "label_en": {
+            "type": "string",
+            "description": "Grade name (English), e.g. Small"
+          },
+          "weight_kg": {
+            "type": "number",
+            "description": "Perkiraan berat (kg); bisa dikosongkan/ diedit nanti"
+          },
+          "price": {
+            "type": "number",
+            "description": "Harga grade ini dalam IDR. Jika weight_priced=true, ini adalah harga per kg"
+          }
+        },
+        "required": [
+          "label",
+          "price"
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "price",
+    "unit",
+    "image_url",
+    "harvest_date",
+    "restock_date"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.hidden": {
+            "$ne": true
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

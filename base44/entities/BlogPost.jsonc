@@ -1,0 +1,49 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title_id": {
+      "type": "string",
+      "description": "Judul dalam Bahasa Indonesia"
+    },
+    "title_en": {
+      "type": "string",
+      "description": "Title in English"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategori posting, e.g. Tips Memasak"
+    },
+    "icon": {
+      "type": "string",
+      "default": "\ud83c\udf31",
+      "description": "Emoji icon for the post card"
+    },
+    "excerpt_id": {
+      "type": "string"
+    },
+    "excerpt_en": {
+      "type": "string"
+    },
+    "body_id": {
+      "type": "string",
+      "description": "Isi posting (Bahasa Indonesia), dipisah baris dengan newline"
+    },
+    "body_en": {
+      "type": "string"
+    },
+    "publish_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "read_time": {
+      "type": "string",
+      "description": "e.g. '4 mnt'"
+    }
+  },
+  "required": [
+    "title_id",
+    "title_en",
+    "category"
+  ]
+}
